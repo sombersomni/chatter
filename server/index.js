@@ -7,6 +7,10 @@ const User = require('./api/User');
 const MongoClient = require('mongodb').MongoClient;
 const PORT = 3000;
 const uri = process.env.MONGO_URI;
+if(process.env.NODE_ENV) {
+    const cors = require('cors');
+    app.use(cors());
+}
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(router);
