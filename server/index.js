@@ -7,9 +7,11 @@ const User = require('./api/User');
 const MongoClient = require('mongodb').MongoClient;
 const PORT = 3000;
 const uri = process.env.MONGO_URI;
-if(process.env.NODE_ENV) {
+
+if(process.env.NODE_ENV === "development") {
     const cors = require('cors');
     app.use(cors());
+    console.log('cors enabled');
 }
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

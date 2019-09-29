@@ -28,7 +28,7 @@ class Auth {
         const user = await users.findOne({ username }, options);
         if (user) {
             //user exists
-            return await bcrypt.compare(password, user.password);
+            return [ await bcrypt.compare(password, user.password), user._id];
         } else {
             throw new Error("Cant find user " + username);
         }
@@ -36,15 +36,15 @@ class Auth {
 
     static async login(username, password) {
         try {
-            const match = await this.authenticate(username, password);
-            if (match) {
-                await users.updateOne(
-                    { _id: ObjectID(user.id) },
+            const found = await this.authenticate(username, password);
+            if (found[0]) {
+                let user = await users.findOneAndUpdate(
+                    { _id: ObjectID(found[1]) },
                     { $set: { loggedin: true } },
-                    { upsert: true }
+                    { upsert: false, returnOriginal: false }
                 )
-                delete user['password'];
-                return user;
+                delete user.value['password'];
+                return user.value;
             } else {
                 throw new Error("Password does not match. Try again!");
             }
@@ -70,11 +70,11 @@ class Auth {
         }
 
     }
-    static async deleteUser(id, username, password) {
+    static async deleteUser(username, password) {
         try {
-            const match = await this.authenticate(username, password);
-            if (match) {
-                const user = await users.deleteOne({ _id: ObjectID(id) });
+            const found = await this.authenticate(username, password);
+            if (found[0]) {
+                const user = await users.deleteOne({ _id: ObjectID(found[1]) });
                 return user;
             } else {
                 throw new Error("Password is incorrect. Can't unregister. Try again!");

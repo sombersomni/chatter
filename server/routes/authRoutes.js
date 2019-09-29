@@ -32,8 +32,8 @@ router.route('/logout')
 router.route('/unregister')
     .post(async (req,res) => {
         console.log('unregister route', req.body);
-        const {id, username, password} = req.body;
-        const user = await Auth.deleteUser(id, username, password);
+        const {username, password} = req.body;
+        const user = await Auth.deleteUser(username, password);
         if (user) {
             res.send(`User ${user.username} was deleted`)
         } else {

@@ -8,13 +8,7 @@ let newUser = {
 
 describe('Auth', function () {
     afterAll(function () {
-        return axios.get(`http://localhost:3000/user/${newUser.username}`)
-            .then(res => {
-                newUser.id = res.data._id;
-                if(res.status === 200) { 
-                    return axios.post('http://localhost:3000/auth/unregister', newUser);
-                }
-            })
+        return axios.post('http://localhost:3000/auth/unregister', newUser)
             .then(res => {
                 expect(res.status).toBe(200);
             })
