@@ -13,7 +13,7 @@ describe('Auth', function () {
                 expect(res.status).toBe(200);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             })
     })
     it('can signup with a new user', function () {
@@ -22,7 +22,7 @@ describe('Auth', function () {
                 expect(res.status).toBe(200);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             })
     })
 
@@ -34,7 +34,7 @@ describe('Auth', function () {
                 expect(res.data.username).toEqual(newUser.username);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             })
     })
     it('can logout user', function () {
@@ -44,7 +44,7 @@ describe('Auth', function () {
                 expect(res.data.username).toEqual(newUser.username);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.message);
             })
     })
 })

@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {user && user.loggedin ?
-        <Chatroom /> :
+        <Chatroom user={user}/> :
          <Login setUser={setUser}/>
         }
       </header>

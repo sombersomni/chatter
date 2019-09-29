@@ -63,7 +63,8 @@ class Auth {
                 { $set: { loggedin: false } },
                 options
             );
-            return user;
+            delete user.value['password'];
+            return user.value;
         } catch (err) {
             console.log(err.message);
             return null;
