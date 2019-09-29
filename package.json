@@ -1,0 +1,33 @@
+{
+  "name": "chatter",
+  "version": "1.0.0",
+  "description": "a chat room demo",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "test": "jest --watch",
+    "dev": "nodemon ./server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/somberSomni/chatter.git"
+  },
+  "keywords": [
+    "chat",
+    "kafka"
+  ],
+  "author": "sombersomni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/somberSomni/chatter/issues"
+  },
+  "homepage": "https://github.com/somberSomni/chatter#readme"
+}
